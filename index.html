@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screen Size Checker</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+    }
+    #container {
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <h1>Screen Size Checker</h1>
+    <p>This tool will display the height and width of your screen in pixels.</p>
+    <p id="size"></p>
+</div>
+
+<script>
+    function getScreenSize() {
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        return { width: width, height: height };
+    }
+
+    function displaySize() {
+        var screenSize = getScreenSize();
+        document.getElementById('size').textContent = "Width: " + screenSize.width + "px, Height: " + screenSize.height + "px";
+    }
+
+    displaySize();
+
+    window.addEventListener('resize', displaySize);
+</script>
+</body>
+</html>
