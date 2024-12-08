@@ -18,6 +18,19 @@
     #container {
         text-align: center;
     }
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
 </style>
 </head>
 <body>
@@ -25,6 +38,7 @@
     <h1>Screen Size Checker</h1>
     <p>This tool will display the height and width of your screen in pixels.</p>
     <p id="size"></p>
+    <button id="fullscreen-btn">Toggle Full Screen</button>
 </div>
 
 <script>
@@ -39,8 +53,19 @@
         document.getElementById('size').textContent = "Width: " + screenSize.width + "px, Height: " + screenSize.height + "px";
     }
 
-    displaySize();
+    function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => {
+                console.error(`Error attempting to enable fullscreen mode: ${err.message}`);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    }
 
+    document.getElementById('fullscreen-btn').addEventListener('click', toggleFullScreen);
+
+    displaySize();
     window.addEventListener('resize', displaySize);
 </script>
 </body>
